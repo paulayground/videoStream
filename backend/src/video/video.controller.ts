@@ -14,8 +14,6 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
-import { response, request } from 'express';
-import { identity } from 'rxjs';
 import { Video } from 'src/model/video.schema';
 import { VideoService } from './video.service';
 
@@ -61,7 +59,6 @@ export class VideoController {
   @Put('/:id')
   async update(@Res() response, @Param('id') id, @Body() video: Video) {
     const updatedVideo = await this.videoService.update(id, video);
-
     return response.status(HttpStatus.OK).json(updatedVideo);
   }
 

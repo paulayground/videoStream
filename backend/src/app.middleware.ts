@@ -30,6 +30,7 @@ export class isAuthenticated implements NestMiddleware {
         throw new HttpException('No token found', HttpStatus.NOT_FOUND);
       }
 
+      console.log(req.headers)
       const token = req.headers.authorization.split(' ')[1];
       const decoded = await this.jwt.verify(token);
 
